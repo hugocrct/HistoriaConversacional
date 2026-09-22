@@ -5,4 +5,12 @@ public class Rhaast extends Personatges{
         super(nom);
         this.diuVeritat = diuVeritat;
     }
+
+    public boolean isDiuVeritat() {
+        return diuVeritat;
+    }
+
+    public void setDiuVeritat(boolean diuVeritat) {
+        this.diuVeritat = diuVeritat;
+    }
 }
