@@ -14,14 +14,21 @@ public class Jugador extends Personatges{
         this.salaActual = 0;
     }
 
-    public void moure(){
+    public int getForca() {
+        return forca;
+    }
 
-        //for(int i = 0; 0 < campaments.get(getSalaActual).getSortides().size(); i++){
-        //int numSala = (campaments.get(getSalaActual()).sortides(i));
-        //for(int j = 0; j < campaments.size(); j++){
-           // if(numSala == campaments.get(getSalaActual))
-        //}
-        //}
+    public void setForca(int forca) {
+        this.forca = forca;
+    }
+
+    public void moure(int num){
+        
+        for(int i = 0; i <main.campaments.get(getSalaActual()).getSortides().size(); i++){
+         if(num == main.campaments.get(getSalaActual()).getSortides().get(i)){
+            setSalaActual(num);
+         }
+        }
         
     }
 

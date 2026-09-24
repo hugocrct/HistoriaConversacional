@@ -4,14 +4,14 @@ import java.util.Scanner;
 public class main {
 
     Scanner e = new Scanner(System.in);
-
+    static ArrayList<Campament> campaments = new ArrayList<>();
     public static void main(String[] args) {
         main p = new main();
         p.principal();
     }
 
     public void principal() {
-        ArrayList<Campament> campaments = new ArrayList<>();
+        
         crearCampamentos(campaments);
 
     }
