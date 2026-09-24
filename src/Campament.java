@@ -14,6 +14,11 @@ public class Campament {
         this.sortides = sortides;
         this.numZona=numZona;
     }
+    @Override
+    public String toString() {
+        return "Campament [e=" + e + ", nom=" + nom + ", descripcio=" + descripcio + ", sortides=" + sortides
+                + ", numZona=" + numZona + ", toString()=" + super.toString() + "]";
+    }
     public void setNom (String nom){
         this.nom = nom;
     }
