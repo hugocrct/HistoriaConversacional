@@ -5,15 +5,33 @@ public class main {
 
     Scanner e = new Scanner(System.in);
     static ArrayList<Campament> campaments = new ArrayList<>();
+
     public static void main(String[] args) {
         main p = new main();
         p.principal();
     }
 
     public void principal() {
-        
-        crearCampamentos(campaments);
 
+        crearCampamentos(campaments);
+        Jugador j = new Jugador("Kayn", 10, 100, 5);
+        menu();
+
+    }
+
+    private void menu() {
+        boolean fi = false;
+        int vueltas = 0;
+        do {
+            if (vueltas == 0) {
+                System.out.println("Benvingut a la historia conversacional lolera!!");
+                System.out.println("Benvingut a la Jungla\n" + "\n" + "Ets Kayn, caçador de la jungla, però no vas sol: dins teu hi ha Rhaast, la veu que et guia i que no sempre diu la veritat. Recorre els vuit territoris, fes-te prou fort i enfronta't al Baró abans que ell acabi amb tu.");
+                vueltas++;
+            }
+            System.out.println("Que vols fer?");
+            System.out.println("1) Moure");
+            System.out.println("2) Chupar pito");
+        } while (fi);
     }
 
     private void crearCampamentos(ArrayList<Campament> campaments) {
@@ -109,7 +127,7 @@ public class main {
                     descripcio = "Zona del riu situada a la part inferior del mapa, entre la jungla i el carril inferior.";
                     numZona = 8;
                     sortides.add(7);// Drac
-                    sortides.add(5);//Krugs
+                    sortides.add(5);// Krugs
                     camp = new Campament(nom, descripcio, sortides, numZona);
                     campaments.add(camp);
                     numCamp++;
@@ -119,7 +137,7 @@ public class main {
                     descripcio = "Zona del riu situada a la part superior del mapa, entre la jungla i el carril superior.";
                     numZona = 9;
                     sortides.add(0);// Gromp
-                    sortides.add(10);//baron
+                    sortides.add(10);// baron
                     camp = new Campament(nom, descripcio, sortides, numZona);
                     campaments.add(camp);
                     numCamp++;
@@ -129,7 +147,7 @@ public class main {
                     descripcio = "Gran monstre situat al riu superior que atorga una poderosa millora a l’equip que el derrota.";
                     numZona = 10;
                     sortides.add(0);// Gromp
-                    sortides.add(10);//baron
+                    sortides.add(10);// baron
                     camp = new Campament(nom, descripcio, sortides, numZona);
                     campaments.add(camp);
                     numCamp++;
