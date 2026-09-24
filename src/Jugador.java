@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Jugador extends Personatges{
 
+    Scanner e = new Scanner(System.in);
     int forca;
     int vida;
     String nom;
@@ -22,13 +24,21 @@ public class Jugador extends Personatges{
         this.forca = forca;
     }
 
-    public void moure(int num){
+    public void moure(){
+
+        System.out.println("a quina sala et vols moure?");
+        int fet = 0;
+        int num = e.nextInt();
         
-        for(int i = 0; i <main.campaments.get(getSalaActual()).getSortides().size(); i++){
-         if(num == main.campaments.get(getSalaActual()).getSortides().get(i)){
-            setSalaActual(num);
-         }
-        }
+        do {
+            for(int i = 0; i <main.campaments.get(getSalaActual()).getSortides().size(); i++){
+                if(num == main.campaments.get(getSalaActual()).getSortides().get(i)){
+                    setSalaActual(num);
+                    i = main.campaments.get(getSalaActual()).getSortides().size() + 1;
+                    fet = 1;
+                }
+            }
+        } while (fet == 0);
         
     }
 
