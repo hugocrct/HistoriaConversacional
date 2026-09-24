@@ -5,6 +5,8 @@ public class main {
 
     Scanner e = new Scanner(System.in);
     static ArrayList<Campament> campaments = new ArrayList<>();
+    Jugador j = new Jugador("Kayn", 10, 100, 5);
+
 
     public static void main(String[] args) {
         main p = new main();
@@ -14,7 +16,7 @@ public class main {
     public void principal() {
 
         crearCampamentos(campaments);
-        Jugador j = new Jugador("Kayn", 10, 100, 5);
+        
         menu();
 
     }
@@ -28,10 +30,23 @@ public class main {
                 System.out.println("Benvingut a la Jungla\n" + "\n" + "Ets Kayn, caçador de la jungla, però no vas sol: dins teu hi ha Rhaast, la veu que et guia i que no sempre diu la veritat. Recorre els vuit territoris, fes-te prou fort i enfronta't al Baró abans que ell acabi amb tu.");
                 vueltas++;
             }
-            System.out.println("Que vols fer?");
-            System.out.println("1) Moure");
-            System.out.println("2) Chupar pito");
-        } while (fi);
+            int queFer = 0;
+            do {
+                 System.out.println("Que vols fer?");
+                System.out.println("1) Moure");
+                System.out.println("2) Chupar pito");
+                queFer = e.nextInt();
+            } while (queFer <= 0 || queFer > 2);
+
+            switch (queFer) {
+                case 1:
+                    j.moure();
+                    break;
+            
+                default:
+                    break;
+            }
+        } while (!fi);
     }
 
     private void crearCampamentos(ArrayList<Campament> campaments) {
