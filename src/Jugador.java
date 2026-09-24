@@ -29,7 +29,6 @@ public class Jugador extends Personatges{
         System.out.println("a quina sala et vols moure?");
         int fet = 0;
         int num = e.nextInt();
-        
         do {
             for(int i = 0; i <main.campaments.get(getSalaActual()).getSortides().size(); i++){
                 if(num == main.campaments.get(getSalaActual()).getSortides().get(i)){
