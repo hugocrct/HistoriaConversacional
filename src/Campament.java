@@ -8,7 +8,7 @@ public class Campament {
     private ArrayList<Integer> sortides = new ArrayList<>();
     // private necessitaObjecte = objecte;
     private int numZona;
-    public Campament(String nom, String descrpcio, ArrayList sortides, Integer numZona){
+    public Campament(String nom, String descrpcio, ArrayList<Integer> sortides, Integer numZona){
         this.nom = nom;
         this.descripcio = descripcio;
         this.sortides = sortides;
