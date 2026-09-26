@@ -16,7 +16,6 @@ public class main {
     public void principal() {
 
         crearCampamentos(campaments);
-        
         menu();
 
     }
@@ -51,12 +50,12 @@ public class main {
 
     private void crearCampamentos(ArrayList<Campament> campaments) {
         int numCamp = 0;
-        ArrayList<Integer> sortides = new ArrayList<>();
         String nom = "";
         String descripcio = "";
         int numZona = 0;
         Campament camp;
         do {
+             ArrayList<Integer> sortides = new ArrayList<>();
             switch (numCamp) {
                 case 0:
                     nom = "Gromp";
@@ -97,6 +96,7 @@ public class main {
                     camp = new Campament(nom, descripcio, sortides, numZona);
                     campaments.add(camp);
                     numCamp++;
+                    break;
                 case 4:
                     nom = "Red";
                     descripcio = "Campament que conté un arbre viu gegant que dona molt or al ser derrotat i te molta vida. Desde aquí pots anar als Picus i als Krugs.";

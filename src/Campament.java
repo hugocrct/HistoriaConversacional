@@ -8,17 +8,13 @@ public class Campament {
     private ArrayList<Integer> sortides = new ArrayList<>();
     // private necessitaObjecte = objecte;
     private int numZona;
-    public Campament(String nom, String descrpcio, ArrayList<Integer> sortides, Integer numZona){
+    public Campament(String nom, String descripcio, ArrayList<Integer> sortides, Integer numZona){
         this.nom = nom;
         this.descripcio = descripcio;
-        this.sortides = sortides;
+        this.sortides = new ArrayList<>(sortides);
         this.numZona=numZona;
     }
-    @Override
-    public String toString() {
-        return "Campament [e=" + e + ", nom=" + nom + ", descripcio=" + descripcio + ", sortides=" + sortides
-                + ", numZona=" + numZona + ", toString()=" + super.toString() + "]";
-    }
+  
     public void setNom (String nom){
         this.nom = nom;
     }
@@ -42,5 +38,9 @@ public class Campament {
     }
     public int getNumZona(){
         return numZona;
+    }
+
+    public String toString(){
+        return("Zona: " + getNumZona() + ", " + getNom() + "\nDescripcio: " + getDescripcio() + "\nSortides: " + getSortides());
     }
 }

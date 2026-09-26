@@ -3,11 +3,14 @@ import java.util.Scanner;
 
 public class Jugador extends Personatges{
 
+
+
     Scanner e = new Scanner(System.in);
     int forca;
     int vida;
     String nom;
     int salaActual;
+    Campament c;
 
     public Jugador(String nom, int forca, int vida, int salaActual ){ //ArrayList<Objecte> inventari
         super(nom);
@@ -25,14 +28,17 @@ public class Jugador extends Personatges{
     }
 
     public void moure(){
-
-        System.out.println("a quina sala et vols moure?");
         int fet = 0;
-        int num = e.nextInt();
+        
         do {
+           
+            System.out.print("a quina sala et vols moure: ");
+            int num = e.nextInt();  
+           
             for(int i = 0; i <main.campaments.get(getSalaActual()).getSortides().size(); i++){
                 if(num == main.campaments.get(getSalaActual()).getSortides().get(i)){
                     setSalaActual(num);
+                    System.out.println(main.campaments.get(getSalaActual()).toString());
                     i = main.campaments.get(getSalaActual()).getSortides().size() + 1;
                     fet = 1;
                 }
