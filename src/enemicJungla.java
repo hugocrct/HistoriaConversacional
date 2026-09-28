@@ -16,4 +16,8 @@ public class enemicJungla extends Personatges{
     public int getSalaActualEnemic(){
         return this.salaActualEnemic;
     }
+
+    public void moviments(){
+        for(int i = 0; i < main.campaments.get(getSalaActualEnemic()))
+    }
 }

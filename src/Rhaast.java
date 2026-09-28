@@ -13,4 +13,14 @@ public class Rhaast extends Personatges{
     public void setDiuVeritat(boolean diuVeritat) {
         this.diuVeritat = diuVeritat;
     }
+
+    public boolean calculVeritat(){
+        int numero = (int) (Math.random() * 2);
+        if(numero == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }
