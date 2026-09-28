@@ -5,13 +5,11 @@ public class main {
 
     Scanner e = new Scanner(System.in);
     static ArrayList<Campament> campaments = new ArrayList<>();
-    static  ArrayList<Objectes> obj = new ArrayList<>();
-    static  ArrayList<Objectes> inventari = new ArrayList<>();
+    static ArrayList<Objectes> obj = new ArrayList<>();
+    static ArrayList<Objectes> inventari = new ArrayList<>();
 
-    
     Jugador j = new Jugador("Kayn", 10, 100, 5, 0, inventari);
-
-
+    enemicJungla j2 = new enemicJungla("Rammus", 0, 5);
     public static void main(String[] args) {
         main p = new main();
         p.principal();
@@ -20,6 +18,7 @@ public class main {
     public void principal() {
 
         crearCampamentos(campaments);
+        crearObjectes(obj);
         menu();
 
     }
@@ -30,12 +29,13 @@ public class main {
         do {
             if (vueltas == 0) {
                 System.out.println("Benvingut a la historia conversacional lolera!!");
-                System.out.println("Benvingut a la Jungla\n" + "\n" + "Ets Kayn, caçador de la jungla, però no vas sol: dins teu hi ha Rhaast, la veu que et guia i que no sempre diu la veritat. Recorre els vuit territoris, fes-te prou fort i enfronta't al Baró abans que ell acabi amb tu.");
+                System.out.println("Benvingut a la Jungla\n" + "\n"
+                        + "Ets Kayn, caçador de la jungla, però no vas sol: dins teu hi ha Rhaast, la veu que et guia i que no sempre diu la veritat. Recorre els vuit territoris, fes-te prou fort i enfronta't al Baró abans que ell acabi amb tu.");
                 vueltas++;
             }
             int queFer = 0;
             do {
-                 System.out.println("Que vols fer?");
+                System.out.println("Que vols fer?");
                 System.out.println("1) Moure");
                 System.out.println("2) Chupar pito");
                 queFer = e.nextInt();
@@ -45,13 +45,20 @@ public class main {
                 case 1:
                     j.moure();
                     break;
-            
+
                 default:
                     break;
             }
         } while (!fi);
     }
-
+    private void crearObjectes (ArrayList<Objectes> obj){
+        String nom="";
+        String descripcio="";
+        String efecte="";
+        int tipus=0;
+        int cooldown=0;
+        // Objectes = objetos;
+    }
     private void crearCampamentos(ArrayList<Campament> campaments) {
         int numCamp = 0;
         String nom = "";
@@ -59,7 +66,7 @@ public class main {
         int numZona = 0;
         Campament camp;
         do {
-             ArrayList<Integer> sortides = new ArrayList<>();
+            ArrayList<Integer> sortides = new ArrayList<>();
             switch (numCamp) {
                 case 0:
                     nom = "Gromp";
