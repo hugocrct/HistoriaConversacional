@@ -10,13 +10,34 @@ public class Jugador extends Personatges{
     int vida;
     String nom;
     int salaActual;
+    int oro;
     Campament c;
+    Objectes o;
+    ArrayList<Objectes> inventari;
 
-    public Jugador(String nom, int forca, int vida, int salaActual ){ //ArrayList<Objecte> inventari
+    public Jugador(String nom, int forca, int vida, int salaActual, int oro, ArrayList<Objectes> inventari){ //ArrayList<Objecte> inventari
         super(nom);
         this.forca = forca;
         this.vida = vida;
         this.salaActual = 0;
+        this.oro = oro;
+        inventari = new ArrayList<>();
+    }
+
+    public ArrayList<Objectes> getInventari() {
+        return inventari;
+    }
+
+    public void setInventari(ArrayList<Objectes> inventari) {
+        this.inventari = inventari;
+    }
+
+    public int getOro() {
+        return oro;
+    }
+
+    public void setOro(int oro) {
+        this.oro = oro;
     }
 
     public int getForca() {
@@ -55,6 +76,8 @@ public class Jugador extends Personatges{
         return this.nom;
     }
 
+    //public void getVidaActual()
+
     public void setVida(int vida){
         this.vida = vida;
     }
@@ -69,5 +92,9 @@ public class Jugador extends Personatges{
 
     public int getSalaActual(){
         return this.salaActual;
+    }
+
+    public String toString(){
+        return("Vida: " + getVida() + "\nOro: " + getOro() + "\")
     }
 }

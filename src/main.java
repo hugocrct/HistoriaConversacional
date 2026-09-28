@@ -5,7 +5,11 @@ public class main {
 
     Scanner e = new Scanner(System.in);
     static ArrayList<Campament> campaments = new ArrayList<>();
-    Jugador j = new Jugador("Kayn", 10, 100, 5);
+    static  ArrayList<Objectes> obj = new ArrayList<>();
+    static  ArrayList<Objectes> inventari = new ArrayList<>();
+
+    
+    Jugador j = new Jugador("Kayn", 10, 100, 5, 0, inventari);
 
 
     public static void main(String[] args) {
