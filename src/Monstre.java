@@ -75,7 +75,9 @@ public class Monstre extends Personatges{
                 vidaMonstre= main.monstres.get(1).getVida();
                 vidaJugador= j.getVida();
                 do {
-                    
+                    if (vidaJugador==0){
+                        main.setFi(true);
+                    }
                 } while (vidaMonstre!=0);
                 break;
             case 2:

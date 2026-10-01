@@ -261,5 +261,8 @@ public class main {
 
         public static void setFi(boolean estado) {
                 fi=estado;
+                if (fi=true){
+                        System.out.println("Has mort!!!");
+                }
         }
 }
