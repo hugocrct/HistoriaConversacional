@@ -58,36 +58,36 @@ public class main {
         private void crearMonstres(ArrayList<Monstre> monstres2) {
                 monstres.add( new Monstre(
                         "Gromp",
-                        2050, 80, 0)
+                        2050, 80, 0,350)
                 );
                 monstres.add( new Monstre(
                         "Blue",
-                        2300, 78, 1)
+                        2300, 78, 1, 500)
                 );
                 monstres.add( new Monstre(
                         "Llops",
-                        1200, 42, 2)
+                        1200, 42, 2,250)
                 );
                 monstres.add( new Monstre(
                         "Picutxins",
-                        1100, 45, 3)
+                        1100, 45, 3,500)
                 );
                 
                 monstres.add( new Monstre(
                         "Red",
-                        2300, 78, 4)
+                        2300, 78, 4,500)
                 );
                 monstres.add( new Monstre(
                         "Krugs",
-                        1050, 45, 5)
+                        1050, 45, 5, 350)
                 );
                 monstres.add( new Monstre(
                         "Drac",
-                        5000, 120, 7)
+                        5000, 120, 7, 2000)
                 );
                 monstres.add( new Monstre(
                         "Baró",
-                        12600, 225, 10)
+                        12600, 225, 10, 2000000)
                 );
         }
 
@@ -164,7 +164,7 @@ public class main {
                                 new ArrayList<>(List.of(1, 9)),
                                 0,
                                 false
-                        ));W
+                        ));
 
                 campaments.add(new Campament(
                                 "El santuari del Blue",
