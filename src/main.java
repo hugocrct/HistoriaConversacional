@@ -9,8 +9,9 @@ public class main {
         static ArrayList<Objectes> obj = new ArrayList<>();
         static ArrayList<Objectes> inventari = new ArrayList<>();
         static ArrayList<Monstre> monstres = new ArrayList<>();
-        Jugador j = new Jugador("Kayn", 10, 100, 5, 0, inventari, 0);
+        Jugador j = new Jugador("Kayn", 120, 500, 6, 0, inventari, 0);
         enemicJungla j2 = new enemicJungla("Rammus", 0, 5);
+        boolean fi = false;
 
         public static void main(String[] args) {
                 main p = new main();
@@ -27,7 +28,7 @@ public class main {
         }
 
         private void menu() {
-                boolean fi = false;
+
                 int vueltas = 0;
                 do {
                         if (vueltas == 0) {
@@ -64,18 +65,18 @@ public class main {
                                         break;
                                 case 3:
                                         if (j.getSalaActual() == 6) {
-                                                //metodo comprar objetos
+                                                // metodo comprar objetos
                                         } else if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
-                                                if (j.getSalaActual()==5){
-                                                        //wardear top
+                                                if (j.getSalaActual() == 5) {
+                                                        // wardear top
                                                 } else {
-                                                        //wardear bot
+                                                        // wardear bot
                                                 }
                                         } else if (j.getSalaActual() != 6) {
                                                 if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
-                                                        //pegar monstruo
+                                                        Monstre.pegarMonstro(j, monstres);
                                                 } else {
-                                                        //pegar monstruo
+                                                        // pegar monstruo
                                                 }
                                         }
                                         break;
@@ -256,5 +257,9 @@ public class main {
                                 new ArrayList<>(List.of(9)),
                                 10,
                                 false));
+        }
+
+        public void setFi(boolean estado) {
+                fi=estado;
         }
 }
