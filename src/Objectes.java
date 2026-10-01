@@ -4,13 +4,22 @@ public class Objectes {
     String efecte;
     int tipus;
     int cooldown;
+    private int precio;
+
    
-    public Objectes(String nom, String descripcio, String efecte, int tipus, int cooldown) {
+    public Objectes(String nom, String descripcio, String efecte, int tipus, int cooldown, int precio) {
         this.nom = nom;
         this.descripcio = descripcio;
         this.efecte = efecte;
         this.tipus = tipus;
         this.cooldown = cooldown;
+        this.precio = precio;
+    }
+    public int getPrecio() {
+        return precio;
+    }
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
     public String getNom() {
         return nom;
