@@ -11,17 +11,27 @@ public class Jugador extends Personatges{
     String nom;
     int salaActual;
     int oro;
+    int ward;
     Campament c;
     Objectes o;
     ArrayList<Objectes> inventari;
 
-    public Jugador(String nom, int forca, int vida, int salaActual, int oro, ArrayList<Objectes> inventari){ //ArrayList<Objecte> inventari
+    public Jugador(String nom, int forca, int vida, int salaActual, int oro, ArrayList<Objectes> inventari, int ward){ //ArrayList<Objecte> inventari
         super(nom);
         this.forca = forca;
         this.vida = vida;
         this.salaActual = 0;
         this.oro = oro;
+        this.ward = ward;
         inventari = new ArrayList<>();
+    }
+
+    public int getWard() {
+        return ward;
+    }
+
+    public void setWard(int ward) {
+        this.ward = ward;
     }
 
     public ArrayList<Objectes> getInventari() {
@@ -47,28 +57,7 @@ public class Jugador extends Personatges{
     public void setForca(int forca) {
         this.forca = forca;
     }
-
-    public void moure(){
-        int fet = 0;
-        
-        do {
-           
-            System.out.print("a quina sala et vols moure: ");
-            int num = e.nextInt();  
-           
-            for(int i = 0; i <main.campaments.get(getSalaActual()).getSortides().size(); i++){
-                if(num == main.campaments.get(getSalaActual()).getSortides().get(i)){
-                    setSalaActual(num);
-                    System.out.println(main.campaments.get(getSalaActual()).toString());
-                    i = main.campaments.get(getSalaActual()).getSortides().size() + 1;
-                    fet = 1;
-                }
-            }
-        } while (fet == 0);
-        
-    }
-
-    public void setNom(String nom){
+public void setNom(String nom){
         this.nom = nom;
     }
 
@@ -93,8 +82,29 @@ public class Jugador extends Personatges{
     public int getSalaActual(){
         return this.salaActual;
     }
+    
+    public void moure(){
+        int fet = 0;
+        
+        do { 
+            System.out.print("a quina sala et vols moure: ");
+            int num = e.nextInt();  
+           
+            for(int i = 0; i <main.campaments.get(getSalaActual()).getSortides().size(); i++){
+                if(num == main.campaments.get(getSalaActual()).getSortides().get(i)){
+                    setSalaActual(num);
+                    System.out.println(main.campaments.get(getSalaActual()).toString());
+                    i = main.campaments.get(getSalaActual()).getSortides().size() + 1;
+                    fet = 1;
+                }
+            }
+        } while (fet == 0);
+        
+    }
 
-    public String toString(){
-        return("Vida: " + getVida() + "\nOro: " + getOro() + "\")
+    public void colocarWard(){
+        if(getWard() > 0 && getSalaActual() == 0 || getSalaActual() == ){
+
+        }
     }
 }

@@ -8,13 +8,23 @@ public class Campament {
     private ArrayList<Integer> sortides = new ArrayList<>();
     // private necessitaObjecte = objecte;
     private int numZona;
-    public Campament(String nom, String descripcio, ArrayList<Integer> sortides, Integer numZona){
+    private boolean isWard;
+    public Campament(String nom, String descripcio, ArrayList<Integer> sortides, Integer numZona, boolean isWard){
         this.nom = nom;
         this.descripcio = descripcio;
         this.sortides = new ArrayList<>(sortides);
         this.numZona=numZona;
+        this.isWard = isWard;
     }
   
+    public boolean isWard() {
+        return isWard;
+    }
+
+    public void setWard(boolean isWard) {
+        this.isWard = isWard;
+    }
+
     public void setNom (String nom){
         this.nom = nom;
     }

@@ -9,7 +9,7 @@ public class main {
         static ArrayList<Objectes> obj = new ArrayList<>();
         static ArrayList<Objectes> inventari = new ArrayList<>();
         static ArrayList<Monstre> monstres = new ArrayList<>();
-        Jugador j = new Jugador("Kayn", 10, 100, 5, 0, inventari);
+        Jugador j = new Jugador("Kayn", 10, 100, 5, 0, inventari, 0);
         enemicJungla j2 = new enemicJungla("Rammus", 0, 5);
 
         public static void main(String[] args) {

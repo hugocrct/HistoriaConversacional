@@ -18,6 +18,22 @@ public class enemicJungla extends Personatges{
     }
 
     public void moviments(){
-        for(int i = 0; i < main.campaments.get(getSalaActualEnemic()))
+        boolean moviment = false;
+        int escollirMoviment = (int) (Math.random() * 2);
+        
+        if(escollirMoviment == 1){
+            for(int i = 0; i < main.campaments.get(getSalaActualEnemic()).getSortides().size(); i++){
+                for(int l = 0; l < main.campaments.get(getSalaActualEnemic()).getSortides().get(i); l++){
+                    do {
+                        int numero = (int) (Math.random() * 12);
+                        if(numero == main.campaments.get(getSalaActualEnemic()).getSortides().get(i)){
+                            moviment = true;
+                            setSalaActualEnemic(numero);
+                            return;
+                        }
+                    } while (!moviment);
+                }
+            }
+        }  
     }
 }
