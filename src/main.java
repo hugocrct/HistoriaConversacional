@@ -57,7 +57,74 @@ public class main {
         String efecte="";
         int tipus=0;
         int cooldown=0;
-        // Objectes = objetos;
+        Objectes objetos;
+        int numObj=0;
+        switch (numObj) {
+            case 1:
+                nom ="Cor d'acer";
+                descripcio="Atorga letalitat i augmenta el dany físic contra enemics amb més vida que tu.";
+                efecte="Mes dany contra enemics mes grans";
+                cooldown=2;
+                numObj++;
+                objetos= new Objectes(nom, descripcio, efecte, tipus, cooldown);
+                break;
+            case 2:
+                nom="Bastó del buit";
+                descripcio="És un bastó; els rumors diuen que és el tentacle d'un calamar que va derrotar en Gragas i que atorga 'poders' màgics a qui el porta.";
+                efecte="Aplica sagnat als objectius.";
+                cooldown=3;
+                numObj++;
+                objetos= new Objectes(nom, descripcio, efecte, tipus, cooldown);
+                break;
+            case 3:
+                nom="Fil de l'infinit";
+                descripcio="És una espasa groga considerada una relíquia, forjada al fiord argentí pels elfs.";
+                efecte="Al impactar a un objectiu Kayn roba parcialment la vida del enemic.";
+                cooldown=3;
+                numObj++;
+                objetos= new Objectes(nom, descripcio, efecte, tipus, cooldown);
+                break;
+            case 4:
+                nom="Rellotge de Sorra de Zhonya";
+                descripcio="Es un rellotge creat per una vella noble que va morir amb ell a la má, aquet event va donarli caracteristiques mistiques al objecte.";
+                efecte="Dona la posibilitat al portador de aturar el temps i de recuperar vida durant l'aturada.";
+                cooldown=6;
+                numObj++;
+                objetos= new Objectes(nom, descripcio, efecte, tipus, cooldown);
+            break;
+            case 5:
+                nom="Oposició Celestial";
+                descripcio="L'escut d'un dels mes valerosos 'tercios', fet amb or i una fusta molt robusta es del mes inpenetrable que trovarás.";
+                efecte="Dona a Kayn mes resistencia als golpeixos enemics";
+                cooldown=0;
+                numObj++;
+                objetos= new Objectes(nom, descripcio, efecte, tipus, cooldown);
+            break;
+            case 6:
+                nom="Soles Simbiòtiques";
+                descripcio="Unes botes amb molta 'aura' que et faran ser el mes estilós de tota la La Fenedura de l'Invocador.";
+                efecte="Kayn es més rápid";
+                cooldown=0;
+                numObj++;
+                objetos= new Objectes(nom, descripcio, efecte, tipus, cooldown);
+            break;
+            case 7:
+                nom="Llampec";
+                descripcio="Alguns diuen que es un mite, altres diuen que es veridic pero tothom está d'acord en que es un poder magic que 'soposadament' entrega el poderós drac d'aigua al ser derrotat..";
+                efecte="Kayn pot fer una teletransportació a un parell de metres d'on este mirant, útil per escapar del jungla enemic.";
+                cooldown=0;
+                numObj++;
+                objetos= new Objectes(nom, descripcio, efecte, tipus, cooldown);
+            break;
+            case 8:
+                nom="Aixafament";
+                descripcio="Una Eina perduda fa molt de temps en La Fenedura de l'Invocador que diuen que te el poder d'invocar rampegs sobre un enemic.";
+                efecte="Aplica 900 de dany sobre un enemic.";
+                cooldown=0;
+                numObj++;
+                objetos= new Objectes(nom, descripcio, efecte, tipus, cooldown);
+            break;
+        }
     }
     private void crearCampamentos(ArrayList<Campament> campaments) {
         int numCamp = 0;
@@ -140,7 +207,7 @@ public class main {
                     numCamp++;
                     break;
                 case 7:
-                    nom = "Drac de aigua";
+                    nom = "Fosa del drac";
                     descripcio = "Cova on trobarem al temit drac d'aigua, es només accesible desde el riu de bot. ";
                     numZona = 7;
                     sortides.add(8);// Rio bot
@@ -169,11 +236,10 @@ public class main {
                     numCamp++;
                     break;
                 case 10:
-                    nom = "Riada de top";
-                    descripcio = "Gran monstre situat al riu superior que atorga una poderosa millora a l’equip que el derrota.";
+                    nom = "Fosa del baró";
+                    descripcio = "Ubicació on es troba el boss final, es el mes perillos de tota la jungla de League of Legends.";
                     numZona = 10;
-                    sortides.add(0);// Gromp
-                    sortides.add(10);// baron
+                    sortides.add(9);// Rio top
                     camp = new Campament(nom, descripcio, sortides, numZona);
                     campaments.add(camp);
                     numCamp++;
