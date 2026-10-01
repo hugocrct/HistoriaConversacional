@@ -87,7 +87,7 @@ public class main {
                 );
                 monstres.add( new Monstre(
                         "Baró",
-                        12600, 225, 10, 2000000)
+                        12600, 225, 10, 20000000)
                 );
         }
 
