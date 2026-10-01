@@ -40,7 +40,18 @@ public class main {
                         do {
                                 System.out.println("Que vols fer?");
                                 System.out.println("1) Moure");
-                                System.out.println("2) Chupar pito");
+                                System.out.println("2) Parlar amb en Rhaast");
+                                if (j.getSalaActual() == 6) {
+                                        System.out.println("3) Comprar objectas");
+                                } else if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
+                                        System.out.println("3) Wardejar la riada");
+                                } else if (j.getSalaActual() != 6) {
+                                        if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
+                                                System.out.println("4) Pegar monstre");
+                                        } else {
+                                                System.out.println("3) Pegar monstre");
+                                        }
+                                }
                                 queFer = e.nextInt();
                         } while (queFer <= 0 || queFer > 2);
 
@@ -48,7 +59,26 @@ public class main {
                                 case 1:
                                         j.moure();
                                         break;
-
+                                case 2:
+                                        // metodo hablar rhaast
+                                        break;
+                                case 3:
+                                        if (j.getSalaActual() == 6) {
+                                                //metodo comprar objetos
+                                        } else if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
+                                                if (j.getSalaActual()==5){
+                                                        //wardear top
+                                                } else {
+                                                        //wardear bot
+                                                }
+                                        } else if (j.getSalaActual() != 6) {
+                                                if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
+                                                        //pegar monstruo
+                                                } else {
+                                                        //pegar monstruo
+                                                }
+                                        }
+                                        break;
                                 default:
                                         break;
                         }
@@ -56,39 +86,31 @@ public class main {
         }
 
         private void crearMonstres(ArrayList<Monstre> monstres2) {
-                monstres.add( new Monstre(
-                        "Gromp",
-                        2050, 80, 0,350)
-                );
-                monstres.add( new Monstre(
-                        "Blue",
-                        2300, 78, 1, 500)
-                );
-                monstres.add( new Monstre(
-                        "Llops",
-                        1200, 42, 2,250)
-                );
-                monstres.add( new Monstre(
-                        "Picutxins",
-                        1100, 45, 3,500)
-                );
-                
-                monstres.add( new Monstre(
-                        "Red",
-                        2300, 78, 4,500)
-                );
-                monstres.add( new Monstre(
-                        "Krugs",
-                        1050, 45, 5, 350)
-                );
-                monstres.add( new Monstre(
-                        "Drac",
-                        5000, 120, 7, 2000)
-                );
-                monstres.add( new Monstre(
-                        "Baró",
-                        12600, 225, 10, 20000000)
-                );
+                monstres.add(new Monstre(
+                                "Gromp",
+                                2050, 80, 0, 350));
+                monstres.add(new Monstre(
+                                "Blue",
+                                2300, 78, 1, 500));
+                monstres.add(new Monstre(
+                                "Llops",
+                                1200, 42, 2, 250));
+                monstres.add(new Monstre(
+                                "Picutxins",
+                                1100, 45, 3, 500));
+
+                monstres.add(new Monstre(
+                                "Red",
+                                2300, 78, 4, 500));
+                monstres.add(new Monstre(
+                                "Krugs",
+                                1050, 45, 5, 350));
+                monstres.add(new Monstre(
+                                "Drac",
+                                5000, 120, 7, 2000));
+                monstres.add(new Monstre(
+                                "Baró",
+                                12600, 225, 10, 20000000));
         }
 
         private void crearObjectes(ArrayList<Objectes> obj) {
@@ -98,28 +120,28 @@ public class main {
                                 "Cor d'acer",
                                 "Atorga letalitat i augmenta el dany físic contra enemics amb més vida que tu.",
                                 "Més dany contra enemics més grans",
-                                tipus, 2, 
+                                tipus, 2,
                                 1100));
 
                 obj.add(new Objectes(
                                 "Bastó del buit",
                                 "És un bastó; els rumors diuen que és el tentacle d'un calamar que va derrotar en Gragas i que atorga 'poders' màgics a qui el porta.",
                                 "Aplica sagnat als objectius.",
-                                tipus, 3, 
+                                tipus, 3,
                                 1050));
 
                 obj.add(new Objectes(
                                 "Fil de l'infinit",
                                 "És una espasa groga considerada una relíquia, forjada al fiord argentí pels elfs.",
                                 "En impactar a un objectiu Kayn roba parcialment la vida de l'enemic.",
-                                tipus, 3, 
+                                tipus, 3,
                                 900));
 
                 obj.add(new Objectes(
                                 "Rellotge de Sorra de Zhonya",
                                 "És un rellotge creat per una vella noble que va morir amb ell a la mà, aquest esdeveniment va donar-li característiques místiques a l'objecte.",
                                 "Dona la possibilitat al portador d'aturar el temps i de recuperar vida durant l'aturada.",
-                                tipus, 6, 
+                                tipus, 6,
                                 1100));
 
                 obj.add(new Objectes(
@@ -163,8 +185,7 @@ public class main {
                                 "Campament situat al costat del Blue, format per un gran gripau. Si vols anar al Blue, a la riada de toplane o al Baró hauràs de passar per aquí",
                                 new ArrayList<>(List.of(1, 9)),
                                 0,
-                                false
-                        ));
+                                false));
 
                 campaments.add(new Campament(
                                 "El santuari del Blue",
