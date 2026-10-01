@@ -4,12 +4,26 @@ public class Monstre extends Personatges{
     int vida;
     int dany;
     int zona;
+    int oroSuelto;
 
-    public Monstre(String nom, int vida, int dany, int zona){
+    public Monstre(String nom, int vida, int dany, int zona, int oroSuelto){
         super(nom);
         this.vida = vida;
         this.dany = dany;
         this.zona = zona;
+        this.oroSuelto = oroSuelto;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public int getOroSuelto() {
+        return oroSuelto;
+    }
+
+    public void setOroSuelto(int oroSuelto) {
+        this.oroSuelto = oroSuelto;
     }
 
     public String getDescripcio() {
