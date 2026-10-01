@@ -141,6 +141,11 @@ public class main {
                                 "Una eina perduda fa molt de temps a La Fenedura de l'Invocador que diuen que té el poder d'invocar llampecs sobre un enemic.",
                                 "Aplica 900 de dany sobre un enemic.",
                                 tipus, 0));
+                obj.add(new Objectes(
+                                "Ward",
+                                "Un arbolet magic, alguns diuen que es el fill del campió 'Ivern'.",
+                                "Dona visió a les zones designades (riades de top i de bot).",
+                                tipus, 0));
         }
 
         private void crearCampamentos(ArrayList<Campament> campaments) {
@@ -148,66 +153,78 @@ public class main {
                                 "El pantà del Gromp",
                                 "Campament situat al costat del Blue, format per un gran gripau. Si vols anar al Blue, a la riada de toplane o al Baró hauràs de passar per aquí",
                                 new ArrayList<>(List.of(1, 9)),
-                                0));
+                                0,
+                                false
+                        ));
 
                 campaments.add(new Campament(
                                 "El santuari del Blue",
                                 "Campament que conté una roca gegant que dona molt d'or en ser derrotada i té molta vida. Des d'aquí pots anar als Llops i al Gromp.",
                                 new ArrayList<>(List.of(0, 2)),
-                                1));
+                                1,
+                                false));
 
                 campaments.add(new Campament(
                                 "El llairó dels Llops",
                                 "Campament format per una ramat de llops. Pots caminar cap al Blue i els Picutxins. També pots anar a la base.",
                                 new ArrayList<>(List.of(1, 3, 6)),
-                                2));
+                                2,
+                                false));
 
                 campaments.add(new Campament(
                                 "El niu dels Picutxins",
                                 "Campament format per diversos ocells petits i la seva mare. Des d'aquí accedeixes als llops, al Red i a la base.",
                                 new ArrayList<>(List.of(2, 4, 6)),
-                                3));
+                                3,
+                                false));
 
                 campaments.add(new Campament(
                                 "La cau del Red",
                                 "Campament que conté un arbre viu gegant que dona molt d'or en ser derrotat i té molta vida. Des d'aquí pots anar als Picus i als Krugs.",
                                 new ArrayList<>(List.of(3, 5)),
-                                4));
+                                4,
+                                false));
 
                 campaments.add(new Campament(
                                 "La pedrera Krugs",
                                 "Campament de criatures de pedra de petites dimensions. Pots arribar fins al Red o a la riada de bot.",
                                 new ArrayList<>(List.of(4, 8)),
-                                5));
+                                5,
+                                false));
 
                 campaments.add(new Campament(
                                 "Base",
                                 "La base és el lloc segur on els campions poden comprar objectes, recuperar vida i tornar al combat. Pots caminar fins als llops o als picus.",
                                 new ArrayList<>(List.of(2, 3)),
-                                6));
+                                6,
+                                false));
 
                 campaments.add(new Campament(
                                 "Fosa del drac",
                                 "Cova on trobarem el temut drac d'aigua, és només accessible des del riu de bot.",
                                 new ArrayList<>(List.of(8)),
-                                7));
+                                7,
+                                false));
 
                 campaments.add(new Campament(
                                 "Riada de bot",
                                 "Zona del riu situada a la part inferior del mapa, entre la jungla i el carril inferior.",
                                 new ArrayList<>(List.of(5, 7)),
-                                8));
+                                8,
+                                false));
 
                 campaments.add(new Campament(
                                 "Riada de top",
                                 "Zona del riu situada a la part superior del mapa, entre la jungla i el carril superior.",
                                 new ArrayList<>(List.of(0, 10)),
-                                9));
+                                9,
+                                false));
 
                 campaments.add(new Campament(
                                 "La caverna del baró",
                                 "Ubicació on es troba el 'boss' final, és el més perillós de tota la jungla de League of Legends.",
                                 new ArrayList<>(List.of(9)),
-                                10));
+                                10,
+                                false));
         }
 }
