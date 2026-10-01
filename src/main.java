@@ -98,54 +98,63 @@ public class main {
                                 "Cor d'acer",
                                 "Atorga letalitat i augmenta el dany físic contra enemics amb més vida que tu.",
                                 "Més dany contra enemics més grans",
-                                tipus, 2));
+                                tipus, 2, 
+                                1100));
 
                 obj.add(new Objectes(
                                 "Bastó del buit",
                                 "És un bastó; els rumors diuen que és el tentacle d'un calamar que va derrotar en Gragas i que atorga 'poders' màgics a qui el porta.",
                                 "Aplica sagnat als objectius.",
-                                tipus, 3));
+                                tipus, 3, 
+                                1050));
 
                 obj.add(new Objectes(
                                 "Fil de l'infinit",
                                 "És una espasa groga considerada una relíquia, forjada al fiord argentí pels elfs.",
                                 "En impactar a un objectiu Kayn roba parcialment la vida de l'enemic.",
-                                tipus, 3));
+                                tipus, 3, 
+                                900));
 
                 obj.add(new Objectes(
                                 "Rellotge de Sorra de Zhonya",
                                 "És un rellotge creat per una vella noble que va morir amb ell a la mà, aquest esdeveniment va donar-li característiques místiques a l'objecte.",
                                 "Dona la possibilitat al portador d'aturar el temps i de recuperar vida durant l'aturada.",
-                                tipus, 6));
+                                tipus, 6, 
+                                1100));
 
                 obj.add(new Objectes(
                                 "Oposició Celestial",
                                 "L'escut d'un dels més valerosos 'tercios', fet amb or i una fusta molt robusta és del més impenetrable que trobaràs.",
                                 "Dona a en Kayn més resistència als copets enemics",
-                                tipus, 0));
+                                tipus, 0,
+                                880));
 
                 obj.add(new Objectes(
                                 "Soles Simbiòtiques",
                                 "Unes botes amb molta 'aura' que et faran ser el més estilós de tota La Fenedura de l'Invocador.",
                                 "En Kayn és més ràpid",
-                                tipus, 0));
+                                tipus, 0,
+                                1000));
 
                 obj.add(new Objectes(
                                 "Llampec",
                                 "Alguns diuen que és un mite, altres diuen que és verídic però tothom està d'acord que és un poder màgic que 'suposadament' entrega el poderós drac d'aigua en ser derrotat..",
                                 "En Kayn pot fer una teletransportació a un parell de metres d'on està mirant, útil per escapar del jungla enemic.",
-                                tipus, 0));
+                                tipus, 0,
+                                0));
 
                 obj.add(new Objectes(
                                 "Aixafament",
                                 "Una eina perduda fa molt de temps a La Fenedura de l'Invocador que diuen que té el poder d'invocar llampecs sobre un enemic.",
                                 "Aplica 900 de dany sobre un enemic.",
-                                tipus, 0));
+                                tipus, 0,
+                                0));
                 obj.add(new Objectes(
                                 "Ward",
                                 "Un arbolet magic, alguns diuen que es el fill del campió 'Ivern'.",
                                 "Dona visió a les zones designades (riades de top i de bot).",
-                                tipus, 0));
+                                tipus, 0,
+                                100));
         }
 
         private void crearCampamentos(ArrayList<Campament> campaments) {
@@ -155,7 +164,7 @@ public class main {
                                 new ArrayList<>(List.of(1, 9)),
                                 0,
                                 false
-                        ));
+                        ));W
 
                 campaments.add(new Campament(
                                 "El santuari del Blue",
