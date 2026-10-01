@@ -103,8 +103,17 @@ public void setNom(String nom){
     }
 
     public void colocarWard(){
-        if(getWard() > 0 && getSalaActual() == 0 || getSalaActual() == ){
-
+        if(getWard() > 0 && getSalaActual() == 0){
+            main.campaments.get(9).setWard(true);
+        }
+        else if(getWard() > 0  && getSalaActual() == 5){
+            main.campaments.get(8).setWard(true);
+        }
+        else if(getWard() == 0){
+            System.out.println("No tienes wards");
+        }
+        else{
+            System.out.println("No ets en un campament a prop del riu.");
         }
     }
 }
