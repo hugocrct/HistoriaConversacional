@@ -11,7 +11,7 @@ public class main {
         static ArrayList<Monstre> monstres = new ArrayList<>();
         Jugador j = new Jugador("Kayn", 120, 500, 6, 0, inventari, 0);
         enemicJungla j2 = new enemicJungla("Rammus", 0, 5);
-        boolean fi = false;
+        static boolean fi = false;
 
         public static void main(String[] args) {
                 main p = new main();
@@ -259,7 +259,7 @@ public class main {
                                 false));
         }
 
-        public void setFi(boolean estado) {
+        public static void setFi(boolean estado) {
                 fi=estado;
         }
 }
