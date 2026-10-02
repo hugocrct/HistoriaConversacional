@@ -74,7 +74,8 @@ public class main {
                                                 }
                                         } else if (j.getSalaActual() != 6) {
                                                 if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
-                                                        Monstre.pegarMonstro(j, monstres);
+                                                        Monstre monstre2 = new Monstre(null, 0, 0, 0, 0);
+                                                        monstre2.pegarMonstro(j, monstres);
                                                 } else {
                                                         // pegar monstruo
                                                 }
