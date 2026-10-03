@@ -24,5 +24,22 @@ public class Rhaast extends Personatges{
         }
     }
 
-    //public void()
+    public void onEsSmite(){
+        if(!calculVeritat()){
+            if(main.campaments.get(4).isTeSmite() == true){
+                System.out.println("El smite es en el campament numero 1.");
+            }
+            else{
+                System.out.println("El smite es en el campament numero 4.");
+            } 
+        }
+        else{
+            if(main.campaments.get(4).isTeSmite() == true){
+                System.out.println("El smite es en el campament numero 4.");
+            }
+            else{
+                System.out.println("El smite es en campament numero 1.");
+            }
+        }
+    }
 }

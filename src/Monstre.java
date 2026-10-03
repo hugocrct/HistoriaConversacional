@@ -11,6 +11,9 @@ public class Monstre extends Personatges {
     int oroSuelto;
     static Scanner e = new Scanner(System.in);
 
+    public ArrayList<Integer> vidaMaximaMonstres = new ArrayList<>();
+
+
     public Monstre(String nom, int vida, int dany, int zona, int oroSuelto) {
         super(nom);
         this.vida = vida;
@@ -102,7 +105,7 @@ public class Monstre extends Personatges {
 
             // Si té l'objecte i decideix usar-lo, el monstre mor a l'instant
             if (jugadorTieneObjeto(jugador, NOMBRE_OBJETO_APLASTAMIENTO) && preguntarSiUsarAplastamiento()) {
-                vidaRestanteMonstruo = 0;
+                vidaRestanteMonstruo = 0; //Le aplicas el que va a morir? (JOEL)
                 break;
             }
 
@@ -127,6 +130,11 @@ public class Monstre extends Personatges {
         } else {
             System.out.println("Has derrotat al monstre!!!");
             jugador.setOro(jugador.getOro() + monstruoRival.getOroSuelto());
+            setVida(0); //por mirar si funciona
+            if(main.campaments.get(monstruoRival.getZona()).isTeSmite() == true){
+                System.out.println("Has aconseguit el smite!!!");
+                main.inventari.add(main.obj.get(7));
+            }
         }
     }
 
@@ -159,5 +167,22 @@ public class Monstre extends Personatges {
         }
 
         return opcionElegida == 1;
+    }
+
+    public void resetEnemic(){
+        for(int i = 0; i < main.monstres.size(); i++){
+            if(main.monstres.get(i).getVida() == 0 && main.monstres.get(i).getZona() == 7 || main.monstres.get(i).getZona() == 10){
+                main.monstres.get(i).setVida(vidaMaximaMonstres.get(i));
+            }
+        }
+    }
+
+    public void creacioVides(){
+        vidaMaximaMonstres.add(2050);
+        vidaMaximaMonstres.add(2300);
+        vidaMaximaMonstres.add(1200);
+        vidaMaximaMonstres.add(1100);
+        vidaMaximaMonstres.add(2300);
+        vidaMaximaMonstres.add(1050);
     }
 }

@@ -13,6 +13,7 @@ public class main {
         enemicJungla j2 = new enemicJungla("Rammus", 0, 5);
         static boolean fi = false;
         Campament c;
+        Rhaast r = new Rhaast("Rhaast", fi);
         
 
         public static void main(String[] args) {
@@ -43,6 +44,7 @@ public class main {
         private void menu() {
 
                 int vueltas = 0;
+                int contador = 0; // comntrol de turnos para reset de campamentos
                 do {
                         if (vueltas == 0) {
                                 System.out.println("Benvingut a la historia conversacional lolera!!");
@@ -72,31 +74,44 @@ public class main {
                         switch (queFer) {
                                 case 1:
                                         j.moure();
+                                        contador++;
                                         break;
                                 case 2:
-                                        // metodo hablar rhaast
+                                        r.onEsSmite();
+                                        contador++;
                                         break;
                                 case 3:
                                         if (j.getSalaActual() == 6) {
                                                 // metodo comprar objetos
+                                                contador++;
                                         } else if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
                                                 if (j.getSalaActual() == 5) {
                                                         // wardear top
+                                                        contador++;
                                                 } else {
                                                         // wardear bot
+                                                        contador++;
                                                 }
                                         } else if (j.getSalaActual() != 6) {
                                                 if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
                                                         Monstre monstre2 = new Monstre(null, 0, 0, 0, 0);
                                                         monstre2.pegarMonstro(j, monstres);
+                                                        contador++;
                                                 } else {
                                                         // pegar monstruo
+                                                        contador++;
                                                 }
                                         }
                                         break;
                                 default:
                                         break;
                         }
+                        
+                        if(contador == 10){
+                                Monstre m = new Monstre(null, 0, 0, 0, 0);
+                                m.resetEnemic();
+                        }
+
                 } while (!fi);
         }
 
@@ -113,7 +128,6 @@ public class main {
                 monstres.add(new Monstre(
                                 "Picutxins",
                                 1100, 45, 3, 500));
-
                 monstres.add(new Monstre(
                                 "Red",
                                 2300, 78, 4, 500));
@@ -123,74 +137,74 @@ public class main {
                 monstres.add(new Monstre(
                                 "Drac",
                                 5000, 120, 7, 2000));
+
                 monstres.add(new Monstre(
                                 "Baró",
                                 12600, 225, 10, 20000000));
         }
 
         private void crearObjectes(ArrayList<Objectes> obj) {
-                int tipus = 0;
 
                 obj.add(new Objectes(
                                 "Cor d'acer",
                                 "Atorga letalitat i augmenta el dany físic contra enemics amb més vida que tu.",
                                 "Més dany contra enemics més grans",
-                                tipus, 2,
+                                0, 2,
                                 1100));
 
                 obj.add(new Objectes(
                                 "Bastó del buit",
                                 "És un bastó; els rumors diuen que és el tentacle d'un calamar que va derrotar en Gragas i que atorga 'poders' màgics a qui el porta.",
                                 "Aplica sagnat als objectius.",
-                                tipus, 3,
+                                0, 3,
                                 1050));
 
                 obj.add(new Objectes(
                                 "Fil de l'infinit",
                                 "És una espasa groga considerada una relíquia, forjada al fiord argentí pels elfs.",
                                 "En impactar a un objectiu Kayn roba parcialment la vida de l'enemic.",
-                                tipus, 3,
+                                0, 3,
                                 900));
 
                 obj.add(new Objectes(
                                 "Rellotge de Sorra de Zhonya",
                                 "És un rellotge creat per una vella noble que va morir amb ell a la mà, aquest esdeveniment va donar-li característiques místiques a l'objecte.",
                                 "Dona la possibilitat al portador d'aturar el temps i de recuperar vida durant l'aturada.",
-                                tipus, 6,
+                                0, 6,
                                 1100));
 
                 obj.add(new Objectes(
                                 "Oposició Celestial",
                                 "L'escut d'un dels més valerosos 'tercios', fet amb or i una fusta molt robusta és del més impenetrable que trobaràs.",
                                 "Dona a en Kayn més resistència als copets enemics",
-                                tipus, 0,
+                                0, 0,
                                 880));
 
                 obj.add(new Objectes(
                                 "Soles Simbiòtiques",
                                 "Unes botes amb molta 'aura' que et faran ser el més estilós de tota La Fenedura de l'Invocador.",
                                 "En Kayn és més ràpid",
-                                tipus, 0,
+                                0, 0,
                                 1000));
 
                 obj.add(new Objectes(
                                 "Llampec",
                                 "Alguns diuen que és un mite, altres diuen que és verídic però tothom està d'acord que és un poder màgic que 'suposadament' entrega el poderós drac d'aigua en ser derrotat..",
                                 "En Kayn pot fer una teletransportació a un parell de metres d'on està mirant, útil per escapar del jungla enemic.",
-                                tipus, 0,
+                                1, 0,
                                 0));
 
                 obj.add(new Objectes(
                                 "Aixafament",
                                 "Una eina perduda fa molt de temps a La Fenedura de l'Invocador que diuen que té el poder d'invocar llampecs sobre un enemic.",
                                 "Aplica 900 de dany sobre un enemic.",
-                                tipus, 0,
+                                1, 0,
                                 0));
                 obj.add(new Objectes(
                                 "Ward",
                                 "Un arbolet magic, alguns diuen que es el fill del campió 'Ivern'.",
                                 "Dona visió a les zones designades (riades de top i de bot).",
-                                tipus, 0,
+                                2, 0,
                                 100));
         }
 

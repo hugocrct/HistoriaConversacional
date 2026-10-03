@@ -132,6 +132,7 @@ public void setNom(String nom){
                     inventari.add(main.obj.get(0));
                     int oroActual = getOro() - main.obj.get(0).getPrecio();
                     setOro(oroActual);
+                    setVida(getVida()+1500);
                 }
                 else{
                     System.out.println("No tens el or suficient per comprar el objecte");
@@ -144,6 +145,8 @@ public void setNom(String nom){
                         inventari.add(main.obj.get(1));
                         int oroActual = getOro() - main.obj.get(1).getPrecio();
                         setOro(oroActual);
+                        setForca(getForca()+400);
+                        
                     }
                     else{
                     System.out.println("No tens el or suficient per comprar el objecte");
@@ -156,6 +159,7 @@ public void setNom(String nom){
                     inventari.add(main.obj.get(2));
                     int oroActual = getOro() - main.obj.get(2).getPrecio();
                     setOro(oroActual);
+                    setForca(getForca()+300);
                 }
                 else{
                     System.out.println("No tens el or suficient per comprar el objecte");
@@ -167,6 +171,7 @@ public void setNom(String nom){
                     inventari.add(main.obj.get(3));
                     int oroActual = getOro() - main.obj.get(3).getPrecio();
                     setOro(oroActual);
+                    setForca(getForca()+250);
                 }
                 else{
                     System.out.println("No tens el or suficient per comprar el objecte");
@@ -178,6 +183,7 @@ public void setNom(String nom){
                     inventari.add(main.obj.get(4));
                     int oroActual = getOro() - main.obj.get(4).getPrecio();
                     setOro(oroActual);
+                    setVida(getVida()+1000);
                 }
                 else{
                     System.out.println("No tens el or suficient per comprar el objecte");
@@ -189,6 +195,8 @@ public void setNom(String nom){
                     inventari.add(main.obj.get(5));
                     int oroActual = getOro() - main.obj.get(5).getPrecio();
                     setOro(oroActual);
+                    setForca(getForca()+250);
+                    setVida(getVida()+750);
                 }
                 else{
                     System.out.println("No tens el or suficient per comprar el objecte");
