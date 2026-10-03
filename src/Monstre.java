@@ -171,7 +171,7 @@ public class Monstre extends Personatges {
 
     public void resetEnemic(){
         for(int i = 0; i < main.monstres.size(); i++){
-            if(main.monstres.get(i).getVida() == 0 && main.monstres.get(i).getZona() == 7 || main.monstres.get(i).getZona() == 10){
+            if(main.monstres.get(i).getVida() == 0){
                 main.monstres.get(i).setVida(vidaMaximaMonstres.get(i));
             }
         }
@@ -184,5 +184,7 @@ public class Monstre extends Personatges {
         vidaMaximaMonstres.add(1100);
         vidaMaximaMonstres.add(2300);
         vidaMaximaMonstres.add(1050);
+        vidaMaximaMonstres.add(0);
+        vidaMaximaMonstres.add(0);
     }
 }

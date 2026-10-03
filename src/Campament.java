@@ -74,7 +74,13 @@ public class Campament {
         }
     }
 
-    public String toString(){
-        return("Zona: " + getNumZona() + ", " + getNom() + "\nDescripcio: " + getDescripcio() + "\nSortides: " + getSortides() + "\nTe Smite: " + isTeSmite());
+    @Override
+    public String toString() {
+        return "Campament [nom=" + nom + ", descripcio=" + descripcio + ", sortides=" + sortides + ", numZona="
+                + numZona + ", isWard=" + isWard + ", teSmite=" + teSmite + "]";
     }
+
+   
+
+    
 }

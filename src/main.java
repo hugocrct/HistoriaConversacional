@@ -86,10 +86,14 @@ public class main {
                                                 contador++;
                                         } else if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
                                                 if (j.getSalaActual() == 5) {
-                                                        // wardear top
+                                                        j.colocarWard();
+                                                        c.toString();
+                                                        System.out.println("Has posat ward");
                                                         contador++;
                                                 } else {
-                                                        // wardear bot
+                                                       j.colocarWard();
+                                                       c.toString();
+                                                       System.out.println("Has postar ward");
                                                         contador++;
                                                 }
                                         } else if (j.getSalaActual() != 6) {

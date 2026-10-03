@@ -105,6 +105,7 @@ public void setNom(String nom){
     public void colocarWard(){
         if(getWard() > 0 && getSalaActual() == 0){
             main.campaments.get(9).setWard(true);
+            
         }
         else if(getWard() > 0  && getSalaActual() == 5){
             main.campaments.get(8).setWard(true);
