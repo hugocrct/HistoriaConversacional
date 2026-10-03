@@ -89,7 +89,7 @@ public void setNom(String nom){
         do { 
             System.out.print("a quina sala et vols moure: ");
             int num = e.nextInt();  
-           
+           System.out.println();
             for(int i = 0; i <main.campaments.get(getSalaActual()).getSortides().size(); i++){
                 if(num == main.campaments.get(getSalaActual()).getSortides().get(i)){
                     setSalaActual(num);
