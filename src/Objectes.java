@@ -15,6 +15,11 @@ public class Objectes {
         this.cooldown = cooldown;
         this.precio = precio;
     }
+    @Override
+    public String toString() {
+        return "Objectes [nom=" + nom + ", \ndescripcio=" + descripcio + ", \nefecte=" + efecte + ", \ntipus=" + tipus
+                + ", \ncooldown=" + cooldown + ", \nprecio=" + precio + "]";
+    }
     public int getPrecio() {
         return precio;
     }
@@ -51,5 +56,6 @@ public class Objectes {
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }
+
 
 }

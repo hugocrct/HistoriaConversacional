@@ -116,4 +116,87 @@ public void setNom(String nom){
             System.out.println("No ets en un campament a prop del riu.");
         }
     }
+
+    public void agafarObjectes(){
+        if(getSalaActual() == 6){
+            main.obj.toString();
+            System.out.println("");
+            System.out.print("Que objecte vols comprar? (Has de dir el nom del objecte, la primera paraula, tot minuscules, sense accents):");
+            String compra = e.nextLine();
+
+           
+            
+            if(compra.equals("cor")){
+                if(getOro() >= main.obj.get(0).getPrecio()){
+                    System.out.println("Has comprat el cor d'acer!!!");
+                    inventari.add(main.obj.get(0));
+                    int oroActual = getOro() - main.obj.get(0).getPrecio();
+                    setOro(oroActual);
+                }
+                else{
+                    System.out.println("No tens el or suficient per comprar el objecte");
+                }
+                
+            }
+            else if(compra.equals("basto")){
+                    if(getOro() >= main.obj.get(1).getPrecio()){
+                        System.out.println("Has comprat el bastó del buit!!!");
+                        inventari.add(main.obj.get(1));
+                        int oroActual = getOro() - main.obj.get(1).getPrecio();
+                        setOro(oroActual);
+                    }
+                    else{
+                    System.out.println("No tens el or suficient per comprar el objecte");
+                    }
+                }
+                else if(compra.equals("fil")){
+
+                if(getOro() >= main.obj.get(2).getPrecio()){
+                    System.out.println("Has comprat el fil!!!");
+                    inventari.add(main.obj.get(2));
+                    int oroActual = getOro() - main.obj.get(2).getPrecio();
+                    setOro(oroActual);
+                }
+                else{
+                    System.out.println("No tens el or suficient per comprar el objecte");
+                }
+            }
+            else if(compra.equals("rellotge")){
+                if(getOro() >= main.obj.get(3).getPrecio()){
+                    System.out.println("Has comprat el rellotge!!!");
+                    inventari.add(main.obj.get(3));
+                    int oroActual = getOro() - main.obj.get(3).getPrecio();
+                    setOro(oroActual);
+                }
+                else{
+                    System.out.println("No tens el or suficient per comprar el objecte");
+                }
+            }
+            else if(compra.equals("oposicio")){
+                if(getOro() >= main.obj.get(4).getPrecio()){
+                    System.out.println("Has comprat l'oposició!!!");
+                    inventari.add(main.obj.get(4));
+                    int oroActual = getOro() - main.obj.get(4).getPrecio();
+                    setOro(oroActual);
+                }
+                else{
+                    System.out.println("No tens el or suficient per comprar el objecte");
+                }
+            }
+            else if(compra.equals("soles")){
+                if(getOro() >= main.obj.get(5).getPrecio()){
+                    System.out.println("Has comprat els soles!!!");
+                    inventari.add(main.obj.get(5));
+                    int oroActual = getOro() - main.obj.get(5).getPrecio();
+                    setOro(oroActual);
+                }
+                else{
+                    System.out.println("No tens el or suficient per comprar el objecte");
+                }
+            }
+        }
+        else{
+            System.out.println("Has de anar a la base per comprar objectes");
+        }
+    }
 }

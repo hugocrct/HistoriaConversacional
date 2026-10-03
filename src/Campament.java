@@ -9,14 +9,28 @@ public class Campament {
     // private necessitaObjecte = objecte;
     private int numZona;
     private boolean isWard;
-    public Campament(String nom, String descripcio, ArrayList<Integer> sortides, Integer numZona, boolean isWard){
+    private boolean teSmite;
+    public Campament(String nom, String descripcio, ArrayList<Integer> sortides, Integer numZona, boolean isWard, boolean teSmite){
         this.nom = nom;
         this.descripcio = descripcio;
         this.sortides = new ArrayList<>(sortides);
         this.numZona=numZona;
         this.isWard = isWard;
+        this.teSmite = teSmite;
     }
   
+    public void setNumZona(int numZona) {
+        this.numZona = numZona;
+    }
+
+    public boolean isTeSmite() {
+        return teSmite;
+    }
+
+    public void setTeSmite(boolean teSmite) {
+        this.teSmite = teSmite;
+    }
+
     public boolean isWard() {
         return isWard;
     }
@@ -50,7 +64,17 @@ public class Campament {
         return numZona;
     }
 
+    public void setSmite(){
+        int numero = (int) (Math.random() * 2);
+        if(numero == 0){
+            main.campaments.get(4).setTeSmite(false);
+        }
+        else{
+            main.campaments.get(1).setTeSmite(false);
+        }
+    }
+
     public String toString(){
-        return("Zona: " + getNumZona() + ", " + getNom() + "\nDescripcio: " + getDescripcio() + "\nSortides: " + getSortides());
+        return("Zona: " + getNumZona() + ", " + getNom() + "\nDescripcio: " + getDescripcio() + "\nSortides: " + getSortides() + "\nTe Smite: " + isTeSmite());
     }
 }

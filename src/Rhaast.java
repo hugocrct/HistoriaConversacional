@@ -23,4 +23,6 @@ public class Rhaast extends Personatges{
             return true;
         }
     }
+
+    public void()
 }
