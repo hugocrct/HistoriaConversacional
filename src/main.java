@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class main {
 
-        Scanner e = new Scanner(System.in);
+        static  Scanner e = new Scanner(System.in);
         static ArrayList<Campament> campaments = new ArrayList<>();
         static ArrayList<Objectes> obj = new ArrayList<>();
         static ArrayList<Objectes> inventari = new ArrayList<>();
         static ArrayList<Monstre> monstres = new ArrayList<>();
-        Jugador j = new Jugador("Kayn", 120, 500, 6, 0, inventari, 0);
-        enemicJungla j2 = new enemicJungla("Rammus", 0, 5);
+        static Jugador j = new Jugador("Kayn", 120, 500, 6, 0, inventari, 0);
+        static enemicJungla j2 = new enemicJungla("Rammus", 0, 5);
         static boolean fi = false;
         Campament c;
         Rhaast r = new Rhaast("Rhaast", fi);
@@ -82,7 +82,7 @@ public class main {
                                         break;
                                 case 3:
                                         if (j.getSalaActual() == 6) {
-                                                // metodo comprar objetos
+                                                j.agafarObjectes();
                                                 contador++;
                                         } else if (j.getSalaActual() == 5 || j.getSalaActual() == 0) {
                                                 if (j.getSalaActual() == 5) {

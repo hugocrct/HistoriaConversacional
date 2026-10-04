@@ -131,9 +131,14 @@ public class Monstre extends Personatges {
             System.out.println("Has derrotat al monstre!!!");
             jugador.setOro(jugador.getOro() + monstruoRival.getOroSuelto());
             setVida(0); //por mirar si funciona
+           
             if(main.campaments.get(monstruoRival.getZona()).isTeSmite() == true){
                 System.out.println("Has aconseguit el smite!!!");
                 main.inventari.add(main.obj.get(7));
+            }
+            if(monstruoRival.getZona() == 7 && main.j.getSalaActual() == 7){
+                main.j.inventari.add(main.obj.get(6));
+                System.out.println("Has conseguit el flash!!!");
             }
         }
     }

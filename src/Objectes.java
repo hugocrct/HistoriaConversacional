@@ -57,5 +57,13 @@ public class Objectes {
         this.cooldown = cooldown;
     }
 
+    public void cambiarCooldowns(){
+        for(int i = 0; i < main.obj.size(); i++){
+            if(main.obj.get(i).getCooldown() > 0){
+                main.obj.get(i).setCooldown(getCooldown() -1);
+            }
+        }
+    }
+
 
 }
