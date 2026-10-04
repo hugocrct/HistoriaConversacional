@@ -1,22 +1,23 @@
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Scanner;
 
 public class Monstre extends Personatges {
 
     String descripcio;
     int vida;
+    int vidaMax;
     int dany;
     int zona;
     int oroSuelto;
-    static Scanner e = new Scanner(System.in);
 
-    public ArrayList<Integer> vidaMaximaMonstres = new ArrayList<>();
-
+    private static final String NOMBRE_OBJETO_SMITE = "Aixafament";
+    private static final String NOMBRE_OBJETO_FLASH = "Llampec";
+    private static final int DANY_SMITE = 900;
+    private static final int COOLDOWN_SMITE = 10;
 
     public Monstre(String nom, int vida, int dany, int zona, int oroSuelto) {
         super(nom);
         this.vida = vida;
+        this.vidaMax = vida;
         this.dany = dany;
         this.zona = zona;
         this.oroSuelto = oroSuelto;
@@ -50,6 +51,10 @@ public class Monstre extends Personatges {
         return vida;
     }
 
+    public int getVidaMax() {
+        return vidaMax;
+    }
+
     public int getDany() {
         return dany;
     }
@@ -66,56 +71,55 @@ public class Monstre extends Personatges {
         this.zona = zona;
     }
 
-    // Relació sala -> posició del monstre a la llista de monstres.
-    // Sala 0 = Gromp, 1 = Blue, 2 = Llops, 3 = Picutxins, 4 = Red, 5 = Krugs, 7 =
-    // Drac, 10 = Baró
-    private static final Map<Integer, Integer> POSICION_MONSTRUO_POR_SALA = Map.of(
-            0, 0,
-            1, 1,
-            2, 2,
-            3, 3,
-            4, 4,
-            5, 5,
-            7, 6,
-            10, 7);
-
-    private static final String NOMBRE_OBJETO_APLASTAMIENTO = "Aixafament";
-
-    public Jugador pegarMonstro(Jugador jugador, ArrayList<Monstre> listaMonstruos) {
-        Integer posicionMonstruo = POSICION_MONSTRUO_POR_SALA.get(jugador.getSalaActual());
+    /** Busca el monstre de la sala on és el jugador (pel camp zona) i lluita contra ell. */
+    public static Jugador pegarMonstro(Jugador jugador, ArrayList<Monstre> listaMonstruos) {
+        Monstre monstruoRival = null;
+        for (Monstre m : listaMonstruos) {
+            if (m.getZona() == jugador.getSalaActual()) {
+                monstruoRival = m;
+            }
+        }
 
         // Si en aquesta sala no hi ha monstre, no hi ha baralla
-        if (posicionMonstruo == null) {
+        if (monstruoRival == null) {
+            System.out.println("Aquí no hi ha cap monstre.");
+            return jugador;
+        }
+        if (monstruoRival.getVida() <= 0) {
+            System.out.println("El/els " + monstruoRival.getNom() + " ja els has matat. Torna més tard, ja reapareixeran.");
             return jugador;
         }
 
-        Monstre monstruoRival = listaMonstruos.get(posicionMonstruo);
         System.out.println("Has decidit lluitar amb el/els " + monstruoRival.getNom());
-
         pelea(jugador, monstruoRival);
         return jugador;
     }
 
-    private void pelea(Jugador jugador, Monstre monstruoRival) {
-        int vidaRestanteMonstruo = monstruoRival.getVida();
-
+    private static void pelea(Jugador jugador, Monstre monstruoRival) {
         System.out.println("Acabas de començar la batalla amb el/els " + monstruoRival.getNom() + " !");
 
-        while (vidaRestanteMonstruo > 0 && jugador.getVida() > 0) {
-
-            // Si té l'objecte i decideix usar-lo, el monstre mor a l'instant
-            if (jugadorTieneObjeto(jugador, NOMBRE_OBJETO_APLASTAMIENTO) && preguntarSiUsarAplastamiento()) {
-                vidaRestanteMonstruo = 0; //Le aplicas el que va a morir? (JOEL)
-                break;
+        // Smite: 900 de dany al monstre, una vegada per baralla, amb cooldown
+        Objectes smite = jugador.getObjecte(NOMBRE_OBJETO_SMITE);
+        if (smite != null) {
+            if (smite.getCooldown() == 0) {
+                if (preguntarSiUsarAplastamiento()) {
+                    monstruoRival.setVida(monstruoRival.getVida() - DANY_SMITE);
+                    smite.setCooldown(COOLDOWN_SMITE);
+                    System.out.println("Fas servir l'aixafament! El monstre rep " + DANY_SMITE + " de dany.");
+                }
+            } else {
+                System.out.println("L'aixafament està en cooldown (" + smite.getCooldown() + " torns).");
             }
+        }
 
+        while (monstruoRival.getVida() > 0 && jugador.getVida() > 0) {
             // Torn del jugador
             System.out.println("Comences tu atacant!");
-            vidaRestanteMonstruo -= jugador.getForca();
-            System.out.println("El monstre s'ha quedat a: " + Math.max(vidaRestanteMonstruo, 0));
+            monstruoRival.setVida(monstruoRival.getVida() - jugador.getForca());
+            System.out.println("El monstre s'ha quedat a: " + Math.max(monstruoRival.getVida(), 0));
 
             // Si el monstre ja ha mort, no contraataca
-            if (vidaRestanteMonstruo <= 0) {
+            if (monstruoRival.getVida() <= 0) {
                 break;
             }
 
@@ -126,70 +130,64 @@ public class Monstre extends Personatges {
         }
 
         if (jugador.getVida() <= 0) {
-            main.setFi(true);
-        } else {
-            System.out.println("Has derrotat al monstre!!!");
-            jugador.setOro(jugador.getOro() + monstruoRival.getOroSuelto());
-            setVida(0); //por mirar si funciona
-           
-            if(main.campaments.get(monstruoRival.getZona()).isTeSmite() == true){
+            main.morir();
+            return;
+        }
+
+        monstruoRival.setVida(0);
+        System.out.println("Has derrotat al monstre!!!");
+        jugador.setOro(jugador.getOro() + monstruoRival.getOroSuelto());
+        System.out.println("Guanyes " + monstruoRival.getOroSuelto() + " d'or. Or total: " + jugador.getOro());
+
+        // Smite: només el campament que el té (Blue o Red) i només una vegada
+        Campament campament = main.campaments.get(monstruoRival.getZona());
+        if (campament.isTeSmite()) {
+            campament.setTeSmite(false);
+            Objectes obj = main.buscarObjecte(NOMBRE_OBJETO_SMITE);
+            if (obj != null && !jugador.teObjecte(NOMBRE_OBJETO_SMITE)) {
+                jugador.getInventari().add(obj);
                 System.out.println("Has aconseguit el smite!!!");
-                main.inventari.add(main.obj.get(7));
             }
-            if(monstruoRival.getZona() == 7 && main.j.getSalaActual() == 7){
-                main.j.inventari.add(main.obj.get(6));
+        }
+
+        // Flash: es guanya en matar el Drac
+        if (monstruoRival.getZona() == 7 && !jugador.teObjecte(NOMBRE_OBJETO_FLASH)) {
+            Objectes obj = main.buscarObjecte(NOMBRE_OBJETO_FLASH);
+            if (obj != null) {
+                jugador.getInventari().add(obj);
                 System.out.println("Has conseguit el flash!!!");
             }
         }
-    }
 
-    private boolean jugadorTieneObjeto(Jugador jugador, String nombreObjeto) {
-        for (Objectes objeto : jugador.getInventari()) {
-            if (objeto.getNom().equals(nombreObjeto)) {
-                return true;
-            }
+        // Matar el Baró = guanyar el joc
+        if (monstruoRival.getZona() == 10) {
+            main.guanyar();
         }
-        return false;
     }
 
-    private boolean preguntarSiUsarAplastamiento() {
-        int opcionElegida = 0;
-
+    private static boolean preguntarSiUsarAplastamiento() {
         System.out.println("Vols usar l'aplastament??");
         System.out.println("    1) Si");
         System.out.println("    2) No");
-
-        // Repeteix fins que l'usuari escrigui 1 o 2 (evita que "a" peti el programa)
-        while (opcionElegida != 1 && opcionElegida != 2) {
-            if (e.hasNextInt()) {
-                opcionElegida = e.nextInt();
-            } else {
-                e.next(); // descarta el que no és un número
-            }
+        int opcionElegida;
+        do {
+            opcionElegida = main.llegirInt();
             if (opcionElegida != 1 && opcionElegida != 2) {
                 System.out.println("Opció no vàlida, escriu 1 o 2.");
             }
-        }
-
+        } while (opcionElegida != 1 && opcionElegida != 2);
         return opcionElegida == 1;
     }
 
-    public void resetEnemic(){
-        for(int i = 0; i < main.monstres.size(); i++){
-            if(main.monstres.get(i).getVida() == 0){
-                main.monstres.get(i).setVida(vidaMaximaMonstres.get(i));
+    /** Fa reaparèixer (vida màxima) tots els monstres que estaven morts. */
+    public static boolean resetEnemic() {
+        boolean algun = false;
+        for (Monstre m : main.monstres) {
+            if (m.getVida() <= 0) {
+                m.setVida(m.getVidaMax());
+                algun = true;
             }
         }
-    }
-
-    public void creacioVides(){
-        vidaMaximaMonstres.add(2050);
-        vidaMaximaMonstres.add(2300);
-        vidaMaximaMonstres.add(1200);
-        vidaMaximaMonstres.add(1100);
-        vidaMaximaMonstres.add(2300);
-        vidaMaximaMonstres.add(1050);
-        vidaMaximaMonstres.add(0);
-        vidaMaximaMonstres.add(0);
+        return algun;
     }
 }
