@@ -40,7 +40,7 @@ public class enemicJungla extends Personatges{
     public void enemicPega(){
         if(main.j.getSalaActual() == 7 && main.j2.getSalaActualEnemic() == 7 || main.j.getSalaActual() == 8 && main.j2.getSalaActualEnemic() == 8 || main.j.getSalaActual() == 9 && main.j2.getSalaActualEnemic() == 9 || main.j.getSalaActual() == 10 && main.j2.getSalaActualEnemic() == 10){
             for(int i = 0; i < main.j.inventari.size(); i++){
-                if(main.j.inventari.get(i).getNom().equals("Llampec")){
+                if(main.j.inventari.get(i).getNom().equals("Llampec") && main.obj.get(6).getCooldown() == 0){
                     System.out.println("T'has trobat al enemic!!!");
                     System.out.println("Per sort tens el llampec i pots escapar sense rebre cap mal");
                     System.out.println("Vols utilitzar el llampec per escapar?");
