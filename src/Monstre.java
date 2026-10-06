@@ -107,7 +107,8 @@ public class Monstre extends Personatges {
         boolean usarAixafament = preguntarSiUsarAixafament();
         while (vidaRestantMonstre > 0 && jugador.getVida() > 0) {
 
-            // Si té l'objecte, no està en cooldown i decideix usar-lo, fa 900 de dany al monstre
+            // Si té l'objecte, no està en cooldown i decideix usar-lo, fa 900 de dany al
+            // monstre
             if (jugadorTeObjecte(jugador, aixafament) && main.obj.get(7).getCooldown() == 0 && usarAixafament) {
                 vidaRestantMonstre = vidaRestantMonstre - 900;
                 main.obj.get(7).setCooldown(10);
