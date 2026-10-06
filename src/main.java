@@ -52,7 +52,9 @@ public class main {
             boolean esBase = sala == 6;
             boolean esRiu = sala == 8 || sala == 9; // riades: sense monstre
             boolean potWardejar = sala == 0 || sala == 5; // Gromp i Krugs
-
+            System.out.println("\n--- " + campaments.get(sala).getNom() + " | Vida " + j.getVida()
+                    + " | Força " + j.getForca() + " | Or " + j.getOr() + " | Wards " + j.getWard()
+                    + " ---");
             System.out.println("Què vols fer?");
             System.out.println("1) Moure");
             System.out.println("2) Parlar amb en Rhaast");

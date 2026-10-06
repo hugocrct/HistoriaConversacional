@@ -19,8 +19,8 @@ public class Objectes {
 
     @Override
     public String toString() {
-        return "Objectes [nom=" + nom + ", \ndescripcio=" + descripcio + ", \nefecte=" + efecte + ", \ntipus=" + tipus
-                + ", \ncooldown=" + cooldown + ", \nprecio=" + preu + "]";
+        return "Objectes: " + nom + ", \ndescripcio=" + descripcio + ", \nefecte=" + efecte + ", \ntipus=" + tipus
+                + ", \ncooldown=" + cooldown + ", \npreu=" + preu + "]";
     }
 
     public int getPreu() {

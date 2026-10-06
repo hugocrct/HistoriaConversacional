@@ -79,7 +79,7 @@ public class Monstre extends Personatges {
             7, 6,
             10, 7);
 
-    private static final String NOM_OBJECTE_AIXAFAMENT = "Aixafament";
+    private static final String aixafament = "Aixafament";
 
     public static Jugador pegarMonstre(Jugador jugador, ArrayList<Monstre> llistaMonstres) {
         Integer posicioMonstre = POSICIO_MONSTRE_PER_SALA.get(jugador.getSalaActual());
@@ -104,11 +104,11 @@ public class Monstre extends Personatges {
         int vidaRestantMonstre = monstreRival.getVida();
 
         System.out.println("Acabes de començar la batalla amb el/els " + monstreRival.getNom() + " !");
-
+        boolean usarAixafament = preguntarSiUsarAixafament();
         while (vidaRestantMonstre > 0 && jugador.getVida() > 0) {
 
             // Si té l'objecte, no està en cooldown i decideix usar-lo, fa 900 de dany al monstre
-            if (jugadorTeObjecte(jugador, NOM_OBJECTE_AIXAFAMENT) && main.obj.get(7).getCooldown() == 0 && preguntarSiUsarAixafament()) {
+            if (jugadorTeObjecte(jugador, aixafament) && main.obj.get(7).getCooldown() == 0 && usarAixafament) {
                 vidaRestantMonstre = vidaRestantMonstre - 900;
                 main.obj.get(7).setCooldown(10);
                 System.out.println("L'aixafament fa 900 de dany!");

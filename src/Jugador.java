@@ -88,6 +88,11 @@ public class Jugador extends Personatges {
 
         do {
             System.out.print("A quina sala et vols moure: ");
+            ArrayList<Integer> sortides = main.campaments.get(getSalaActual()).getSortides();
+            System.out.println("Pots anar a:");
+            for (int s : sortides) {
+                System.out.println("  " + s + ") " + main.campaments.get(s).getNom());
+            }
             int num = e.nextInt();
             System.out.println();
             for (int i = 0; i < main.campaments.get(getSalaActual()).getSortides().size(); i++) {
