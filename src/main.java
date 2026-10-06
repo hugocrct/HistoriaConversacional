@@ -12,6 +12,7 @@ public class main {
         static Jugador j = new Jugador("Kayn", 150, 2000, 6, 0, inventari, 0);
         static enemicJungla j2 = new enemicJungla("Rammus", 0, 5);
         static boolean fi = false;
+        
         Campament c;
         Rhaast r = new Rhaast("Rhaast", fi);
 
@@ -51,7 +52,9 @@ public class main {
                         boolean esBase = sala == 6;
                         boolean esRiu = sala == 8 || sala == 9; // riades: sense monstre
                         boolean potWardejar = sala == 0 || sala == 5; // Gromp i Krugs
-
+                        System.out.println("\n--- " + campaments.get(sala).getNom() + " | Vida " + j.getVida()
+                                        + " | Força " + j.getForca() + " | Or " + j.getOro() + " | Wards " + j.getWard()
+                                        + " ---");
                         System.out.println("Que vols fer?");
                         System.out.println("1) Moure");
                         System.out.println("2) Parlar amb en Rhaast");

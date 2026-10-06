@@ -76,7 +76,7 @@ public class Campament {
 
     @Override
     public String toString() {
-        return "Campament [nom=" + nom + ", descripcio=" + descripcio + ", sortides=" + sortides + ", numZona="
+        return "Campament: "+ nom + ", descripcio=" + descripcio + ", sortides=" + sortides + ", numZona="
                 + numZona + ", isWard=" + isWard + ", teSmite=" + teSmite + "]";
     }
 
