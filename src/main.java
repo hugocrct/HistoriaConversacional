@@ -12,7 +12,7 @@ public class main {
         static Jugador j = new Jugador("Kayn", 150, 2000, 6, 0, inventari, 0);
         static enemicJungla j2 = new enemicJungla("Rammus", 0, 5);
         static boolean fi = false;
-        static int torn = 0;
+        Campament c;
         Rhaast r = new Rhaast("Rhaast", fi);
 
         public static void main(String[] args) {
@@ -20,50 +20,15 @@ public class main {
                 p.principal();
         }
 
-        /** Crea tot el món del joc (sense arrencar el menú). */
-        public void inicialitzar() {
+        public void principal() {
+
                 crearCampamentos(campaments);
                 setSmite();
                 crearObjectes(obj);
-                assignarBonus();
                 crearMonstres(monstres);
-        }
-
-        public void principal() {
-                inicialitzar();
+                Monstre.creacioVides();
                 menu();
-        }
 
-        // ---------- Entrada de dades (un sol Scanner, sempre per línies) ----------
-
-        static String llegirLinia() {
-                if (!e.hasNextLine()) {
-                        System.out.println("\nFi de l'entrada. Sortint del joc.");
-                        System.exit(0);
-                }
-                return e.nextLine().trim();
-        }
-
-        static int llegirInt() {
-                while (true) {
-                        String s = llegirLinia();
-                        try {
-                                return Integer.parseInt(s);
-                        } catch (NumberFormatException ex) {
-                                System.out.println("Escriu un número, si us plau.");
-                        }
-                }
-        }
-
-        // ---------- Utilitats ----------
-
-        static Objectes buscarObjecte(String nom) {
-                for (Objectes o : obj) {
-                        if (o.getNom().equals(nom)) {
-                                return o;
-                        }
-                }
-                return null;
         }
 
         public void setSmite() {
@@ -75,63 +40,11 @@ public class main {
                 }
         }
 
-        private void assignarBonus() {
-                buscarObjecte("Cor d'acer").setBonus(1500, 0);
-                buscarObjecte("Bastó del buit").setBonus(0, 400);
-                buscarObjecte("Fil de l'infinit").setBonus(0, 300);
-                buscarObjecte("Rellotge de Sorra de Zhonya").setBonus(0, 250);
-                buscarObjecte("Oposició Celestial").setBonus(1000, 0);
-                buscarObjecte("Soles Simbiòtiques").setBonus(750, 250);
-        }
-
-        // ---------- Torn i final de partida ----------
-
-        /**
-         * Tot el que passa després d'una acció del jugador: cooldowns, enemic, ward,
-         * reaparició.
-         */
-        public void acabarTorn() {
-                torn++;
-                Objectes.cambiarCooldowns();
-                j2.moviments();
-                mostrarVisioWards();
-                j2.enemicPega();
-                if (!fi && torn % 10 == 0) {
-                        if (Monstre.resetEnemic()) {
-                                System.out.println("\n(Els campaments de la jungla s'han regenerat.)");
-                        }
-                }
-        }
-
-        private void mostrarVisioWards() {
-                for (int riu : new int[] { 8, 9 }) {
-                        if (campaments.get(riu).isWard() && j2.getSalaActualEnemic() == riu) {
-                                System.out.println("[Ward] Veus l'enemic a " + campaments.get(riu).getNom() + "!");
-                        }
-                }
-        }
-
-        public static void setFi(boolean estado) {
-                fi = estado;
-        }
-
-        public static void morir() {
-                System.out.println("\nHas mort!!!");
-                setFi(true);
-        }
-
-        public static void guanyar() {
-                System.out.println("\nHAS DERROTAT AL BARÓ!!! HAS GUANYAT LA PARTIDA!!!");
-                setFi(true);
-        }
-
-        // ---------- Menú ----------
-
         private void menu() {
+                int contador = 0;
                 System.out.println("Benvingut a la historia conversacional lolera!!");
                 System.out.println(
                                 "Benvingut a la Jungla!!\n\nEts Kayn, caçador de la jungla, però no vas sol: dins teu hi ha Rhaast, la veu que et guia i que no sempre diu la veritat. Recorre els vuit territoris, fes-te prou fort i enfronta't al Baró abans que ell acabi amb tu.");
-                j.arribar(j.getSalaActual());
 
                 do {
                         int sala = j.getSalaActual();
@@ -139,10 +52,6 @@ public class main {
                         boolean esRiu = sala == 8 || sala == 9; // riades: sense monstre
                         boolean potWardejar = sala == 0 || sala == 5; // Gromp i Krugs
 
-                        System.out.println("\n--- " + campaments.get(sala).getNom() + " | Vida " + j.getVida() + "/"
-                                        + j.getVidaMax()
-                                        + " | Força " + j.getForca() + " | Or " + j.getOro() + " | Wards " + j.getWard()
-                                        + " ---");
                         System.out.println("Que vols fer?");
                         System.out.println("1) Moure");
                         System.out.println("2) Parlar amb en Rhaast");
@@ -162,10 +71,7 @@ public class main {
 
                         int queFer;
                         do {
-                                queFer = llegirInt();
-                                if (queFer < 1 || queFer > maxOpcio) {
-                                        System.out.println("Opció no vàlida, escull entre 1 i " + maxOpcio + ".");
-                                }
+                                queFer = e.nextInt();
                         } while (queFer < 1 || queFer > maxOpcio);
 
                         switch (queFer) {
@@ -187,13 +93,18 @@ public class main {
                                         break;
                         }
 
-                        if (!fi) {
-                                acabarTorn();
+                        contador++;
+                        if (fi == false) {
+                                Objectes.cambiarCooldowns();
+                                j2.moviments();
+                                j2.enemicPega();
+                        }
+                        if (contador == 10) {
+                                Monstre.resetEnemic();
+                                contador = 0;
                         }
                 } while (!fi);
         }
-
-        // ---------- Creació de dades ----------
 
         private void crearMonstres(ArrayList<Monstre> monstres2) {
                 monstres.add(new Monstre(
@@ -365,5 +276,12 @@ public class main {
                                 new ArrayList<>(List.of(9)),
                                 10,
                                 false, false));
+        }
+
+        public static void setFi(boolean estado) {
+                fi = estado;
+                if (fi == true) {
+                        System.out.println("Has mort!!!");
+                }
         }
 }

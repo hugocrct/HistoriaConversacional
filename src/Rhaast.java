@@ -1,7 +1,7 @@
-public class Rhaast extends Personatges {
+public class Rhaast extends Personatges{
     boolean diuVeritat;
 
-    public Rhaast(String nom, boolean diuVeritat) {
+    public Rhaast(String nom, boolean diuVeritat){
         super(nom);
         this.diuVeritat = diuVeritat;
     }
@@ -14,24 +14,32 @@ public class Rhaast extends Personatges {
         this.diuVeritat = diuVeritat;
     }
 
-    /** true = aquesta vegada diu la veritat, false = menteix (50/50). */
-    public boolean calculVeritat() {
-        return Math.random() < 0.5;
+    public boolean calculVeritat(){
+        int numero = (int) (Math.random() * 2);
+        if(numero == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
-    public void onEsSmite() {
-        boolean enRed = main.campaments.get(4).isTeSmite();
-        boolean enBlue = main.campaments.get(1).isTeSmite();
-
-        // Si ningú el té, és que ja l'has agafat
-        if (!enRed && !enBlue) {
-            System.out.println("Rhaast: Ja tens el smite, no et cal res més de mi.");
-            return;
+    public void onEsSmite(){
+        if(!calculVeritat()){
+            if(main.campaments.get(4).isTeSmite() == true){
+                System.out.println("El smite es en el campament numero 1.");
+            }
+            else{
+                System.out.println("El smite es en el campament numero 4.");
+            } 
         }
-
-        int real = enRed ? 4 : 1;
-        int altre = enRed ? 1 : 4;
-        int dit = calculVeritat() ? real : altre;
-        System.out.println("Rhaast: El smite és al campament número " + dit + ".");
+        else{
+            if(main.campaments.get(4).isTeSmite() == true){
+                System.out.println("El smite es en el campament numero 4.");
+            }
+            else{
+                System.out.println("El smite es en campament numero 1.");
+            }
+        }
     }
 }
