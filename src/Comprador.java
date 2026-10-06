@@ -1,11 +1,12 @@
+
 import java.util.ArrayList;
 
-public class Comprador extends Personatges{
+public class Comprador extends Personatges {
 
     String nom;
     ArrayList<Objectes> tenda = new ArrayList<>();
 
-    public Comprador(String nom, ArrayList<Objectes> tenda){
+    public Comprador(String nom, ArrayList<Objectes> tenda) {
         super(nom);
         this.tenda = tenda;
     }
@@ -18,6 +19,4 @@ public class Comprador extends Personatges{
         this.tenda = tenda;
     }
 
-    
-    
 }

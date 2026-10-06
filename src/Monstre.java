@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,30 +9,29 @@ public class Monstre extends Personatges {
     int vida;
     int dany;
     int zona;
-    int oroSuelto;
+    int orSoltat;
     static Scanner e = main.e;
 
     public static ArrayList<Integer> vidaMaximaMonstres = new ArrayList<>();
 
-
-    public Monstre(String nom, int vida, int dany, int zona, int oroSuelto) {
+    public Monstre(String nom, int vida, int dany, int zona, int orSoltat) {
         super(nom);
         this.vida = vida;
         this.dany = dany;
         this.zona = zona;
-        this.oroSuelto = oroSuelto;
+        this.orSoltat = orSoltat;
     }
 
     public void setVida(int vida) {
         this.vida = vida;
     }
 
-    public int getOroSuelto() {
-        return oroSuelto;
+    public int getOrSoltat() {
+        return orSoltat;
     }
 
-    public void setOroSuelto(int oroSuelto) {
-        this.oroSuelto = oroSuelto;
+    public void setOrSoltat(int orSoltat) {
+        this.orSoltat = orSoltat;
     }
 
     public String getDescripcio() {
@@ -69,7 +69,7 @@ public class Monstre extends Personatges {
     // Relació sala -> posició del monstre a la llista de monstres.
     // Sala 0 = Gromp, 1 = Blue, 2 = Llops, 3 = Picutxins, 4 = Red, 5 = Krugs, 7 =
     // Drac, 10 = Baró
-    private static final Map<Integer, Integer> POSICION_MONSTRUO_POR_SALA = Map.of(
+    private static final Map<Integer, Integer> POSICIO_MONSTRE_PER_SALA = Map.of(
             0, 0,
             1, 1,
             2, 2,
@@ -79,57 +79,57 @@ public class Monstre extends Personatges {
             7, 6,
             10, 7);
 
-    private static final String NOMBRE_OBJETO_APLASTAMIENTO = "Aixafament";
+    private static final String NOM_OBJECTE_AIXAFAMENT = "Aixafament";
 
-    public static Jugador pegarMonstro(Jugador jugador, ArrayList<Monstre> listaMonstruos) {
-        Integer posicionMonstruo = POSICION_MONSTRUO_POR_SALA.get(jugador.getSalaActual());
+    public static Jugador pegarMonstre(Jugador jugador, ArrayList<Monstre> llistaMonstres) {
+        Integer posicioMonstre = POSICIO_MONSTRE_PER_SALA.get(jugador.getSalaActual());
 
         // Si en aquesta sala no hi ha monstre, no hi ha baralla
-        if (posicionMonstruo == null) {
+        if (posicioMonstre == null) {
             return jugador;
         }
 
-        Monstre monstruoRival = listaMonstruos.get(posicionMonstruo);
-        if (monstruoRival.getVida() <= 0) {
+        Monstre monstreRival = llistaMonstres.get(posicioMonstre);
+        if (monstreRival.getVida() <= 0) {
             System.out.println("Aquest monstre ja l'has matat, torna més tard.");
             return jugador;
         }
-        System.out.println("Has decidit lluitar amb el/els " + monstruoRival.getNom());
+        System.out.println("Has decidit lluitar amb el/els " + monstreRival.getNom());
 
-        pelea(jugador, monstruoRival);
+        baralla(jugador, monstreRival);
         return jugador;
     }
 
-    private static void pelea(Jugador jugador, Monstre monstruoRival) {
-        int vidaRestanteMonstruo = monstruoRival.getVida();
+    private static void baralla(Jugador jugador, Monstre monstreRival) {
+        int vidaRestantMonstre = monstreRival.getVida();
 
-        System.out.println("Acabas de començar la batalla amb el/els " + monstruoRival.getNom() + " !");
+        System.out.println("Acabes de començar la batalla amb el/els " + monstreRival.getNom() + " !");
 
-        while (vidaRestanteMonstruo > 0 && jugador.getVida() > 0) {
+        while (vidaRestantMonstre > 0 && jugador.getVida() > 0) {
 
             // Si té l'objecte, no està en cooldown i decideix usar-lo, fa 900 de dany al monstre
-            if (jugadorTieneObjeto(jugador, NOMBRE_OBJETO_APLASTAMIENTO) && main.obj.get(7).getCooldown() == 0 && preguntarSiUsarAplastamiento()) {
-                vidaRestanteMonstruo = vidaRestanteMonstruo - 900;
+            if (jugadorTeObjecte(jugador, NOM_OBJECTE_AIXAFAMENT) && main.obj.get(7).getCooldown() == 0 && preguntarSiUsarAixafament()) {
+                vidaRestantMonstre = vidaRestantMonstre - 900;
                 main.obj.get(7).setCooldown(10);
                 System.out.println("L'aixafament fa 900 de dany!");
-                if (vidaRestanteMonstruo <= 0) {
+                if (vidaRestantMonstre <= 0) {
                     break;
                 }
             }
 
             // Torn del jugador
             System.out.println("Comences tu atacant!");
-            vidaRestanteMonstruo -= jugador.getForca();
-            System.out.println("El monstre s'ha quedat a: " + Math.max(vidaRestanteMonstruo, 0));
+            vidaRestantMonstre -= jugador.getForca();
+            System.out.println("El monstre s'ha quedat a: " + Math.max(vidaRestantMonstre, 0));
 
             // Si el monstre ja ha mort, no contraataca
-            if (vidaRestanteMonstruo <= 0) {
+            if (vidaRestantMonstre <= 0) {
                 break;
             }
 
             // Torn del monstre
-            System.out.println("Ahora ataca el monstre!");
-            jugador.setVida(jugador.getVida() - monstruoRival.getDany());
+            System.out.println("Ara ataca el monstre!");
+            jugador.setVida(jugador.getVida() - monstreRival.getDany());
             System.out.println("T'has quedat a " + Math.max(jugador.getVida(), 0) + " !");
         }
 
@@ -137,65 +137,65 @@ public class Monstre extends Personatges {
             main.setFi(true);
         } else {
             System.out.println("Has derrotat al monstre!!!");
-            jugador.setOro(jugador.getOro() + monstruoRival.getOroSuelto());
-            monstruoRival.setVida(0);
-           
-            if(main.campaments.get(monstruoRival.getZona()).isTeSmite() == true){
+            jugador.setOr(jugador.getOr() + monstreRival.getOrSoltat());
+            monstreRival.setVida(0);
+
+            if (main.campaments.get(monstreRival.getZona()).isTeSmite() == true) {
                 System.out.println("Has aconseguit el smite!!!");
                 main.inventari.add(main.obj.get(7));
-                main.campaments.get(monstruoRival.getZona()).setTeSmite(false);
+                main.campaments.get(monstreRival.getZona()).setTeSmite(false);
             }
-            if(monstruoRival.getZona() == 7 && main.j.getSalaActual() == 7 && !jugadorTieneObjeto(jugador, "Llampec")){
+            if (monstreRival.getZona() == 7 && main.j.getSalaActual() == 7 && !jugadorTeObjecte(jugador, "Llampec")) {
                 main.j.inventari.add(main.obj.get(6));
-                System.out.println("Has conseguit el flash!!!");
+                System.out.println("Has aconseguit el flash!!!");
             }
-            if(monstruoRival.getZona() == 10){
+            if (monstreRival.getZona() == 10) {
                 System.out.println("HAS DERROTAT AL BARÓ!!! HAS GUANYAT!!!");
                 main.fi = true;
             }
         }
     }
 
-    private static boolean jugadorTieneObjeto(Jugador jugador, String nombreObjeto) {
-        for (Objectes objeto : jugador.getInventari()) {
-            if (objeto.getNom().equals(nombreObjeto)) {
+    private static boolean jugadorTeObjecte(Jugador jugador, String nomObjecte) {
+        for (Objectes objecte : jugador.getInventari()) {
+            if (objecte.getNom().equals(nomObjecte)) {
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean preguntarSiUsarAplastamiento() {
-        int opcionElegida = 0;
+    private static boolean preguntarSiUsarAixafament() {
+        int opcioEscollida = 0;
 
-        System.out.println("Vols usar l'aplastament??");
-        System.out.println("    1) Si");
+        System.out.println("Vols usar l'aixafament?");
+        System.out.println("    1) Sí");
         System.out.println("    2) No");
 
         // Repeteix fins que l'usuari escrigui 1 o 2 (evita que "a" peti el programa)
-        while (opcionElegida != 1 && opcionElegida != 2) {
+        while (opcioEscollida != 1 && opcioEscollida != 2) {
             if (e.hasNextInt()) {
-                opcionElegida = e.nextInt();
+                opcioEscollida = e.nextInt();
             } else {
                 e.next(); // descarta el que no és un número
             }
-            if (opcionElegida != 1 && opcionElegida != 2) {
+            if (opcioEscollida != 1 && opcioEscollida != 2) {
                 System.out.println("Opció no vàlida, escriu 1 o 2.");
             }
         }
 
-        return opcionElegida == 1;
+        return opcioEscollida == 1;
     }
 
-    public static void resetEnemic(){
-        for(int i = 0; i < main.monstres.size(); i++){
-            if(main.monstres.get(i).getVida() == 0){
+    public static void resetEnemic() {
+        for (int i = 0; i < main.monstres.size(); i++) {
+            if (main.monstres.get(i).getVida() == 0) {
                 main.monstres.get(i).setVida(vidaMaximaMonstres.get(i));
             }
         }
     }
 
-    public static void creacioVides(){
+    public static void creacioVides() {
         vidaMaximaMonstres.add(2050);
         vidaMaximaMonstres.add(2300);
         vidaMaximaMonstres.add(1200);
